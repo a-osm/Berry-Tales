@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BerrySeeder {
 
-  private BerryService berryService;
+  private final BerryService berryService;
 
   @Autowired
   public BerrySeeder(BerryService berryService) {
@@ -17,7 +17,7 @@ public class BerrySeeder {
   }
 
   public void seed() {
-    if (((List<Berry>)berryService.findAll()).size() == 0) {
+    if (berryService.findAll().size() == 0) {
       Berry goldenRaspberry = new Berry();
       goldenRaspberry.setName("Golden Raspberries");
       goldenRaspberry.setImgUrl("https://northernnester.com/wp-content/uploads/2020/09/golden-raspberries-768x576.jpg");

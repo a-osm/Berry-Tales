@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MainSeeder implements CommandLineRunner {
 
-  private BerrySeeder berrySeeder;
+  private final BerrySeeder berrySeeder;
 
   @Autowired
   public MainSeeder(BerrySeeder berrySeeder) {
