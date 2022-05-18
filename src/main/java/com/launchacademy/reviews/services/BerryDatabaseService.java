@@ -3,13 +3,15 @@ package com.launchacademy.reviews.services;
 import com.launchacademy.reviews.models.Berry;
 import com.launchacademy.reviews.repositories.BerriesRepository;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BerryDatabaseService implements BerryService {
 
-  private BerriesRepository berriesRepository;
+  private final BerriesRepository berriesRepository;
 
   @Autowired
   public BerryDatabaseService(BerriesRepository berriesRepository) {
@@ -22,4 +24,8 @@ public class BerryDatabaseService implements BerryService {
   @Override
   public void save(Berry berry) { berriesRepository.save(berry); }
 
+  @Override
+  public Optional<Berry> findById(Long id) {
+    return berriesRepository.findById(id);
+  }
 }

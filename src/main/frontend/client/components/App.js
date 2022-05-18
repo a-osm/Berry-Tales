@@ -5,6 +5,7 @@ import $ from "jquery"
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom"
 
 import BerriesIndex from "./BerriesIndex"
+import BerriesShow from "./BerriesShow"
 
 const App = props => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const App = props => {
           <Redirect to="/berries" />
         </Route>
         <Route exact path="/berries" component={BerriesIndex} />
+        <Route exact path="/berries/:id" component={BerriesShow} />
       </Switch>
     </BrowserRouter>
   )
