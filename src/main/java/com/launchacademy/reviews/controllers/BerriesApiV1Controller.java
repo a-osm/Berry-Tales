@@ -1,5 +1,6 @@
 package com.launchacademy.reviews.controllers;
 
+import com.launchacademy.reviews.exceptionHandling.BerryNotFoundException;
 import com.launchacademy.reviews.models.Berry;
 import com.launchacademy.reviews.services.BerryService;
 import java.util.HashMap;
@@ -39,6 +40,8 @@ public class BerriesApiV1Controller {
     Map<String, Berry> dataMap = new HashMap<>();
     if(berry.isPresent()) {
       dataMap.put("berry", berry.get());
+    } else {
+      throw new BerryNotFoundException();
     }
     return new ResponseEntity<>(dataMap, HttpStatus.OK);
   }
