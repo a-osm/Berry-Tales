@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-import BerriesTile from "./BerriesTile"
+import BerriesTile from "./BerryTile"
 
 const BerriesIndex = props => {
   const [berries, setBerries] = useState([])
@@ -29,12 +29,7 @@ const BerriesIndex = props => {
     return <BerriesTile key={berries.id} berries={berries} />
   })
 
-  return (
-    <div>
-      <Link to={"/berries/new"}>Add a new berry</Link>
-      {berryTiles}
-    </div>
-  )
+  return <div>{berryTiles}</div>
 }
 
 export default BerriesIndex
