@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-import BerriesTile from "./BerryTile"
+import BerryTile from "./BerryTile"
 
 const BerriesIndex = props => {
   const [berries, setBerries] = useState([])
@@ -25,8 +25,8 @@ const BerriesIndex = props => {
     fetchBerries()
   }, [])
 
-  const berryTiles = berries.map(berries => {
-    return <BerriesTile key={berries.id} berries={berries} />
+  const berryTiles = berries.map(berry => {
+    return <BerryTile key={berry.id} berry={berry} />
   })
 
   return <div>{berryTiles}</div>

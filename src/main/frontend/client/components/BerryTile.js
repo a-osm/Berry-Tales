@@ -1,7 +1,7 @@
 import React from "react"
 
 const BerryTile = props => {
-  const { name, imgUrl, description } = props.berries
+  const { name, imgUrl, description } = props.berry
 
   return (
     <div>
