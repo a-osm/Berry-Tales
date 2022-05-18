@@ -27,7 +27,7 @@ public class BerrySeeder {
       Berry blueberry = new Berry();
       blueberry.setName("Blueberries");
       blueberry.setImgUrl("https://northernnester.com/wp-content/uploads/2020/09/blueberry-768x576.jpg");
-      blueberry.setDescription("Josh's favorite berry");
+      blueberry.setDescription("A decent berry");
       berryService.save(blueberry);
 
       Berry strawberry = new Berry();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useLocation, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const BerriesShow = props => {
     const [berry, setBerry] = useState({})
