@@ -18,7 +18,7 @@ const NewReviewForm = props => {
     const berryId = props.match.params.id
     formPayload.berryId = berryId
     try {
-      const response = await fetch(`/api/v1/reviews`, {
+      const response = await fetch(`/api/v1/berries/${berryId}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"

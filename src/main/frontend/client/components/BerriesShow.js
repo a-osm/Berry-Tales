@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
+import ReviewList from "./ReviewList"
+
 const BerriesShow = props => {
-  const [berry, setBerry] = useState({})
+  const [berry, setBerry] = useState({
+    name: "",
+    description: "",
+    imgUrl: "",
+    reviews: []
+  })
   const berryId = props.match.params.id
 
   const fetchBerry = async () => {
@@ -32,6 +39,7 @@ const BerriesShow = props => {
       <h1>{berry.name}</h1>
       <p>{berry.description}</p>
       <img src={berry.imgUrl} />
+      <ReviewList reviews={berry.reviews} />
       <Link to={"/berries"}>Back to Home Page</Link>
     </div>
   )
