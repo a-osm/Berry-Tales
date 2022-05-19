@@ -26,6 +26,9 @@ const BerriesShow = props => {
 
   return (
     <div>
+      <Link to={`/berries/${berryId}/reviews/new`}>
+        Add a review to this berry!
+      </Link>
       <h1>{berry.name}</h1>
       <p>{berry.description}</p>
       <img src={berry.imgUrl} />
