@@ -6,7 +6,9 @@ const BerryTile = props => {
 
   return (
     <div>
-      <Link to={`/berries/${id}`}><h1>{name}</h1></Link>
+      <Link to={`/berries/${id}`}>
+        <h1>{name}</h1>
+      </Link>
       <img src={imgUrl} alt="image" />
       <p>{description}</p>
     </div>

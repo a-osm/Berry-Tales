@@ -14,47 +14,62 @@ import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/berries")
 public class BerriesApiV1Controller {
 
-    private final BerryService berryService;
+  private final BerryService berryService;
 
-    @Autowired
-    public BerriesApiV1Controller(BerryService berryService) {
-        this.berryService = berryService;
+  @Autowired
+  public BerriesApiV1Controller(BerryService berryService) {
+    this.berryService = berryService;
+  }
+
+  @GetMapping
+  public ResponseEntity<Map<String, List<Berry>>> allBerries() {
+    Map<String, List<Berry>> dataMap = new HashMap<>();
+    dataMap.put("berries", berryService.findAll());
+    return new ResponseEntity<>(dataMap, HttpStatus.OK);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Map<String, Berry>> getBerry(@PathVariable Long id) {
+    Optional<Berry> berry = berryService.findById(id);
+    Map<String, Berry> dataMap = new HashMap<>();
+    if (berry.isPresent()) {
+      dataMap.put("berry", berry.get());
+    } else {
+      throw new BerryNotFoundException();
     }
+    return new ResponseEntity<>(dataMap, HttpStatus.OK);
+  }
 
-    @GetMapping
-    public ResponseEntity<Map<String, List<Berry>>> allBerries() {
-        Map<String, List<Berry>> dataMap = new HashMap<>();
-        dataMap.put("berries", berryService.findAll());
-        return new ResponseEntity<>(dataMap, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Berry>> getBerry(@PathVariable Long id) {
-        Optional<Berry> berry = berryService.findById(id);
+  @PostMapping
+  public ResponseEntity addNewBerry(@RequestBody @Valid Berry berry,
+      BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      Map<String, String> errorList = new HashMap<>();
+      for (FieldError fieldError : bindingResult.getFieldErrors()) {
+        errorList.put(fieldError.getField(), fieldError.getDefaultMessage());
+      }
+      Map<String, Map> errors = new HashMap<>();
+      errors.put("errors", errorList);
+      return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+    } else {
+      try {
         Map<String, Berry> dataMap = new HashMap<>();
-        if (berry.isPresent()) {
-            dataMap.put("berry", berry.get());
-        } else {
-            throw new BerryNotFoundException();
-        }
-        return new ResponseEntity<>(dataMap, HttpStatus.OK);
+        berryService.save(berry);
+        dataMap.put("berry", berry);
+        return new ResponseEntity<>(dataMap, HttpStatus.CREATED);
+      } catch (Exception exception) {
+        throw new BerryNotCreatedException();
+      }
     }
-
-    @PostMapping
-    public ResponseEntity<Map<String, Berry>> addNewBerry(@RequestBody Berry berry) {
-        try {
-            Map<String, Berry> dataMap = new HashMap<>();
-            berryService.save(berry);
-            dataMap.put("berry", berry);
-            return new ResponseEntity<>(dataMap, HttpStatus.CREATED);
-        } catch (Exception exception) {
-            throw new BerryNotCreatedException();
-        }
-    }
+  }
 }
