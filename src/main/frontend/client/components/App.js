@@ -7,6 +7,7 @@ import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom"
 import BerriesIndex from "./BerriesIndex"
 import BerriesShow from "./BerriesShow"
 import NewReviewForm from "./NewReviewForm"
+import NewBerryForm from "./NewBerryForm.js"
 
 const App = props => {
   useEffect(() => {
@@ -25,6 +26,7 @@ const App = props => {
           path="/berries/:id/reviews/new"
           component={NewReviewForm}
         />
+        <Route exact path="/berries/new" component={NewBerryForm} />
         <Route exact path="/berries/:id" component={BerriesShow} />
       </Switch>
     </BrowserRouter>

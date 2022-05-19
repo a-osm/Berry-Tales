@@ -12,6 +12,7 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ExceptionHelper {
+<<<<<<< HEAD
     @ExceptionHandler(value = { BerryNotFoundException.class })
     public ResponseEntity<String> handleBerryNotFoundException(BerryNotFoundException ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
@@ -26,4 +27,11 @@ public class ExceptionHelper {
         responseBody.put("errors", errorList);
         return new ResponseEntity<Map<String, List>>(responseBody, HttpStatus.UNPROCESSABLE_ENTITY);
     }
+=======
+
+  @ExceptionHandler(value = {BerryNotFoundException.class})
+  public ResponseEntity<String> handleBerryNotFoundException(BerryNotFoundException ex) {
+    return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
+>>>>>>> 80f332118123cab660e0311d46485eb937a42ace
 }
