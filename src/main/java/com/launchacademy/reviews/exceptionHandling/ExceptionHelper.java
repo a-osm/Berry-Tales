@@ -10,8 +10,9 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ExceptionHelper {
-    @ExceptionHandler(value = { BerryNotFoundException.class })
-    public ResponseEntity<String> handleBerryNotFoundException(BerryNotFoundException ex) {
-        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
+
+  @ExceptionHandler(value = {BerryNotFoundException.class})
+  public ResponseEntity<String> handleBerryNotFoundException(BerryNotFoundException ex) {
+    return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
 }

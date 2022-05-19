@@ -29,7 +29,12 @@ const BerriesIndex = props => {
     return <BerryTile key={berry.id} berry={berry} />
   })
 
-  return <div>{berryTiles}</div>
+  return (
+    <>
+      <Link to={"/berries/new"}>Add A New Berry</Link>
+      <div>{berryTiles}</div>
+    </>
+  )
 }
 
 export default BerriesIndex

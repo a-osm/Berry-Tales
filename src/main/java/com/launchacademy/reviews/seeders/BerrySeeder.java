@@ -20,19 +20,22 @@ public class BerrySeeder {
     if (berryService.findAll().size() == 0) {
       Berry goldenRaspberry = new Berry();
       goldenRaspberry.setName("Golden Raspberries");
-      goldenRaspberry.setImgUrl("https://northernnester.com/wp-content/uploads/2020/09/golden-raspberries-768x576.jpg");
+      goldenRaspberry.setImgUrl(
+          "https://northernnester.com/wp-content/uploads/2020/09/golden-raspberries-768x576.jpg");
       goldenRaspberry.setDescription("Fake looking raspberries");
       berryService.save(goldenRaspberry);
 
       Berry blueberry = new Berry();
       blueberry.setName("Blueberries");
-      blueberry.setImgUrl("https://northernnester.com/wp-content/uploads/2020/09/blueberry-768x576.jpg");
+      blueberry.setImgUrl(
+          "https://northernnester.com/wp-content/uploads/2020/09/blueberry-768x576.jpg");
       blueberry.setDescription("A decent berry");
       berryService.save(blueberry);
 
       Berry strawberry = new Berry();
       strawberry.setName("Strawberries");
-      strawberry.setImgUrl("https://northernnester.com/wp-content/uploads/2020/09/strawberries-768x576.jpg");
+      strawberry.setImgUrl(
+          "https://northernnester.com/wp-content/uploads/2020/09/strawberries-768x576.jpg");
       berryService.save(strawberry);
     }
   }
