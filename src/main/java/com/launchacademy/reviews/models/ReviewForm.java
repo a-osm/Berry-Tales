@@ -1,5 +1,6 @@
 package com.launchacademy.reviews.models;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,10 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class ReviewForm {
 
-  @NotNull
+  @NotBlank
   private String name;
 
-  @NotNull
+  @NotBlank
   private Integer rating;
 
   private String comment;

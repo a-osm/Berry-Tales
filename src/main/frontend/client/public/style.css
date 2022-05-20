@@ -8,3 +8,11 @@ img{
 h1{
   text-align: center;
 }
+
+div{
+  margin: .5rem;
+}
+
+body{
+  background-color: lightcyan;
+}

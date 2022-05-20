@@ -25,7 +25,7 @@ const NewReviewForm = props => {
     const berryId = props.match.params.id
     formPayload.berryId = berryId
     try {
-      const response = await fetch(`/api/v1/berries/${berryId}/reviews`, {
+      const response = await fetch(`/api/v1//reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -101,6 +101,7 @@ const NewReviewForm = props => {
     return <Redirect push to={`/berries/${props.match.params.id}`} />
   }
 
+
   return (
     <div>
       <h1>{berry.name}</h1>
@@ -142,7 +143,7 @@ const NewReviewForm = props => {
           />
         </div>
 
-        <input className="button" type="submit" value="Submit" />
+        <input className="button" type="submit" value="Submit" />     
       </form>
     </div>
   )
