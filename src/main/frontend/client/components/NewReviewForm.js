@@ -20,7 +20,6 @@ const NewReviewForm = props => {
     reviews: []
   })
 
-
   const addReview = async formPayload => {
     const berryId = props.match.params.id
     formPayload.berryId = berryId
