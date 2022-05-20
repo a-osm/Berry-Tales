@@ -25,7 +25,7 @@ const NewReviewForm = props => {
     const berryId = props.match.params.id
     formPayload.berryId = berryId
     try {
-      const response = await fetch(`/api/v1//reviews`, {
+      const response = await fetch(`/api/v1/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -100,7 +100,6 @@ const NewReviewForm = props => {
   if (shouldRedirect) {
     return <Redirect push to={`/berries/${props.match.params.id}`} />
   }
-
 
   return (
     <div>
