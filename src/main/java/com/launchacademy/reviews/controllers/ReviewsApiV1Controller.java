@@ -9,8 +9,11 @@ import com.launchacademy.reviews.services.ReviewService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,22 +33,26 @@ public class ReviewsApiV1Controller {
   }
 
   @PostMapping
-  public ResponseEntity<Map<String, Review>> create(@PathVariable Integer id, @RequestBody ReviewForm reviewForm){
-   try{
-//     reviewForm.setBerryId(id);
-//     Review review = new Review();
-//     review.setName(reviewForm.getName());
-//     review.setRating(reviewForm.getRating());
-//     review.setComment(reviewForm.getComment());
-//     Optional<Berry> berry = berryService.findById(Long.valueOf(id));
+  public ResponseEntity create(@RequestBody @Valid ReviewForm reviewForm,
+      BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      Map<String, String> errorList = new HashMap<>();
+      for (FieldError fieldError : bindingResult.getFieldErrors()) {
+        errorList.put(fieldError.getField(), fieldError.getDefaultMessage());
+      }
+      Map<String, Map> errors = new HashMap<>();
+      errors.put("errors", errorList);
+      return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+    } else {
+      try {
+        Review newReview = reviewService.createReview(reviewForm);
+        Map<String, Review> dataMap = new HashMap<>();
+        dataMap.put("review", newReview);
+        return new ResponseEntity<Map<String, Review>>(dataMap, HttpStatus.CREATED);
 
-     Review newReview = reviewService.createReview(reviewForm);
-     Map<String, Review> dataMap = new HashMap<>();
-     dataMap.put("review", newReview);
-     return new ResponseEntity<Map<String, Review>>(dataMap, HttpStatus.CREATED);
-
-   } catch(IllegalArgumentException ex){
-     throw new ReviewNotCreatedException();
+      } catch (IllegalArgumentException ex) {
+        throw new ReviewNotCreatedException();
+      }
     }
   }
 }

@@ -21,5 +21,5 @@ public class ReviewForm {
   private String comment;
 
   @NotNull
-  private Integer berryId;
+  private Long berryId;
 }

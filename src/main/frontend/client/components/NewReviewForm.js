@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router"
 import { Link } from "react-router-dom"
 import _ from "lodash"
@@ -13,6 +13,13 @@ const NewReviewForm = props => {
   })
   const [errors, setErrors] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [berry, setBerry] = useState({
+    name: "",
+    description: "",
+    imgUrl: "",
+    reviews: []
+  })
+
 
   const addReview = async formPayload => {
     const berryId = props.match.params.id
@@ -43,9 +50,44 @@ const NewReviewForm = props => {
     }
   }
 
+  const fetchBerry = async () => {
+    const berryId = props.match.params.id
+    formPayload.berryId = berryId
+    try {
+      const response = await fetch(`/api/v1/berries/${berryId}`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} ($response.statusText)`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const responseBody = await response.json()
+      setBerry(responseBody.berry)
+    } catch (err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+  useEffect(() => {
+    fetchBerry()
+  }, [])
+
+  const validForSubmission = () => {
+    let submitErrors = {}
+    const requiredFields = ["name", "rating"]
+    requiredFields.forEach(field => {
+      if (formPayload[field].trim() === "") {
+        submitErrors = { ...submitErrors, [field]: "Is Blank" }
+      }
+    })
+    setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
+  }
+
   const handleSubmit = event => {
     event.preventDefault()
-    addReview(formPayload)
+    if(validForSubmission()){
+      addReview(formPayload)
+    }
   }
 
   const handleInputChange = event => {
@@ -61,8 +103,8 @@ const NewReviewForm = props => {
 
   return (
     <div>
-      <h1>Add a review to this berry!</h1>
-      <Link to={"/berries"}>Back to berries</Link>
+      <h1>{berry.name}</h1>
+      <Link to={`/berries/${berry.id}`}>Back to berry</Link>
       <form className="callout" onSubmit={handleSubmit}>
         <ErrorList errors={errors} />
         <div>

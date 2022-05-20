@@ -13,13 +13,11 @@ import org.springframework.stereotype.Service;
 public class ReviewDatabaseService implements ReviewService {
 
   private ReviewsRepository reviewsRepository;
-  private BerriesRepository berriesRepository;
   private BerryService berryService;
 
   @Autowired
-  public ReviewDatabaseService(ReviewsRepository reviewsRepository, BerriesRepository berriesRepository, BerryService berryService) {
+  public ReviewDatabaseService(ReviewsRepository reviewsRepository, BerryService berryService) {
     this.reviewsRepository = reviewsRepository;
-    this.berriesRepository = berriesRepository;
     this.berryService = berryService;
   }
 
@@ -37,7 +35,7 @@ public class ReviewDatabaseService implements ReviewService {
     review.setName(reviewForm.getName());
     review.setRating(reviewForm.getRating());
     review.setComment(reviewForm.getComment());
-    Optional<Berry> berry = berryService.findById(Long.valueOf(reviewForm.getBerryId()));
+    Optional<Berry> berry = berryService.findById(reviewForm.getBerryId());
     if(berry.isPresent()) {
       review.setBerry(berry.get());
     }

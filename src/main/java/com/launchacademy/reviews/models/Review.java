@@ -12,6 +12,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +28,11 @@ public class Review {
   @Column(name = "id", nullable = false, unique = true)
   private Long id;
 
+  @NotBlank
   @Column(name = "name", nullable = false)
   private String name;
 
+  @NotNull
   @Column(name = "rating", nullable = false)
   @Min(1)
   @Max(5)
