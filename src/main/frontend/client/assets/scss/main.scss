@@ -2,6 +2,10 @@
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
 // place global css here
+*{
+  margin: 0%;
+  padding: 0%;
+}
 *,
 *::before,
 *::after {

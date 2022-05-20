@@ -9,4 +9,5 @@ public interface BerryService {
   List<Berry> findAll();
   void save(Berry berry);
   Optional<Berry> findById(Long id);
+  Optional<Berry> findByName(String berryName);
 }

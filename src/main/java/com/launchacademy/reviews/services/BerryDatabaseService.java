@@ -28,4 +28,9 @@ public class BerryDatabaseService implements BerryService {
   public Optional<Berry> findById(Long id) {
     return berriesRepository.findById(id);
   }
+
+  @Override
+  public Optional<Berry> findByName(String menuName) {
+    return Optional.ofNullable(berriesRepository.findByName(menuName));
+  }
 }
