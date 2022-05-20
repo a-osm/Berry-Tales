@@ -4,6 +4,9 @@ import "foundation-sites"
 import $ from "jquery"
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom"
 
+
+
+
 import BerriesIndex from "./BerriesIndex"
 import BerriesShow from "./BerriesShow"
 import NewReviewForm from "./NewReviewForm"
