@@ -12,18 +12,25 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ExceptionHelper {
-    @ExceptionHandler(value = { BerryNotFoundException.class })
-    public ResponseEntity<String> handleBerryNotFoundException(BerryNotFoundException ex) {
-        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
 
-    @ExceptionHandler(value = { ReviewNotCreatedException.class })
-    public ResponseEntity<Map<String, List>> handleReviewNotCreatedException(ReviewNotCreatedException ex) {
-        System.out.println("Could not create review");
-        List<String> errorList = new ArrayList<>();
-        errorList.add(ex.getMessage());
-        Map<String, List> responseBody = new HashMap<>();
-        responseBody.put("errors", errorList);
-        return new ResponseEntity<Map<String, List>>(responseBody, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
+  @ExceptionHandler(value = {BerryNotFoundException.class})
+  public ResponseEntity<String> handleBerryNotFoundException(BerryNotFoundException ex) {
+    return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(value = {BerryNotDeletedException.class})
+  public ResponseEntity<String> handleBerryNotDeletedException(BerryNotDeletedException ex) {
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_MODIFIED);
+  }
+
+  @ExceptionHandler(value = {ReviewNotCreatedException.class})
+  public ResponseEntity<Map<String, List>> handleReviewNotCreatedException(
+      ReviewNotCreatedException ex) {
+    System.out.println("Could not create review");
+    List<String> errorList = new ArrayList<>();
+    errorList.add(ex.getMessage());
+    Map<String, List> responseBody = new HashMap<>();
+    responseBody.put("errors", errorList);
+    return new ResponseEntity<Map<String, List>>(responseBody, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
 }

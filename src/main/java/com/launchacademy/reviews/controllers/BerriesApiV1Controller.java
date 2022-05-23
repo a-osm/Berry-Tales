@@ -1,6 +1,7 @@
 package com.launchacademy.reviews.controllers;
 
 import com.launchacademy.reviews.exceptionHandling.BerryNotCreatedException;
+import com.launchacademy.reviews.exceptionHandling.BerryNotDeletedException;
 import com.launchacademy.reviews.exceptionHandling.BerryNotFoundException;
 import com.launchacademy.reviews.models.Berry;
 import com.launchacademy.reviews.services.BerryService;
@@ -71,5 +72,17 @@ public class BerriesApiV1Controller {
         throw new BerryNotCreatedException();
       }
     }
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Map<String, Berry>> deleteBerry(@PathVariable Long id) {
+    Optional<Berry> berry = berryService.findById(id);
+    Map<String, Berry> dataMap = new HashMap<>();
+    if (berry.isPresent()) {
+      dataMap.remove("berry", berry.get());
+    } else {
+      throw new BerryNotDeletedException();
+    }
+    return new ResponseEntity<>(dataMap, HttpStatus.OK);
   }
 }

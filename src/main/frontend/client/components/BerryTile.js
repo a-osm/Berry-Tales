@@ -11,6 +11,7 @@ const BerryTile = props => {
       </Link>
       <img src={imgUrl} alt="image" />
       <p>{description}</p>
+      
     </div>
   )
 }
