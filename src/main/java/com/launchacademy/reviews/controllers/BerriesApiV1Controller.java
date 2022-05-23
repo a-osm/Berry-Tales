@@ -19,12 +19,14 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("api/v1/berries")
 public class BerriesApiV1Controller {
 
   private final BerryService berryService;
+  HashMap<String, Berry> tempBerry;
 
   @Autowired
   public BerriesApiV1Controller(BerryService berryService) {
@@ -71,5 +73,33 @@ public class BerriesApiV1Controller {
         throw new BerryNotCreatedException();
       }
     }
+  }
+
+  @GetMapping("/{id}/edit")
+  public ResponseEntity<Map<String, Berry>> editBerry(@PathVariable Long id) {
+    Optional<Berry> berry = berryService.findById(id);
+    Map<String, Berry> dataMap = new HashMap<>();
+    if (berry.isPresent()) {
+      dataMap.put("berry", berry.get());
+    } else {
+      throw new BerryNotFoundException();
+    }
+    return new ResponseEntity<>(dataMap, HttpStatus.OK);
+  }
+
+  @PutMapping("/{id}/edit")
+  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable Long id, @RequestBody Berry updatedBerry) {
+    if (berryService.findById(id).isPresent()) {
+      Optional<Berry> optionalBerry = berryService.findById(id);
+      Berry berry = optionalBerry.get();
+      berry.setDescription(updatedBerry.getDescription());
+      berry.setName(updatedBerry.getName());
+      berry.setImgUrl(updatedBerry.getImgUrl());
+      berryService.save(berry);
+    } else {
+      throw new BerryNotCreatedException();
+//      Fix the above later
+    }
+    return null;
   }
 }
