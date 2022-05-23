@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, {useState} from "react"
 import ErrorList from "./ErrorList"
 import _ from "lodash"
-import { Redirect } from "react-router-dom"
+import {Redirect} from "react-router-dom"
 
 const NewBerryForm = props => {
   const [formPayload, setFormPayload] = useState({
@@ -18,7 +18,7 @@ const NewBerryForm = props => {
     try {
       const response = await fetch("/api/v1/berries", {
         method: "POST",
-        headers: new Headers({ "Content-Type": "application/json" }),
+        headers: new Headers({"Content-Type": "application/json"}),
         body: JSON.stringify(formPayload)
       })
       if (!response.ok) {
@@ -43,7 +43,7 @@ const NewBerryForm = props => {
     const requiredFields = ["name", "imgUrl"]
     requiredFields.forEach(field => {
       if (formPayload[field].trim() === "") {
-        submitErrors = { ...submitErrors, [field]: "Is Blank" }
+        submitErrors = {...submitErrors, [field]: "Is Blank"}
       }
     })
     setErrors(submitErrors)
@@ -63,51 +63,51 @@ const NewBerryForm = props => {
   }
 
   if (shouldRedirect) {
-    return <Redirect push to={`/berries`} />
+    return <Redirect push to={`/berries`}/>
   }
 
   return (
-    <div>
-      <h2>Add New Berry</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name: </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formPayload.name}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="imgUrl">Image Link: </label>
-          <input
-            type="text"
-            name="imgUrl"
-            id="imgUrl"
-            value={formPayload.imgUrl}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description: </label>
-          <textarea
-            type="text"
-            name="description"
-            id="description"
-            value={formPayload.description}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <input type="submit" value="Add New Berry" />
-        </div>
-        <div>
-          <ErrorList errors={errors} />
-        </div>
-      </form>
-    </div>
+      <div>
+        <h2>Add New Berry</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name">Name: </label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                value={formPayload.name}
+                onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="imgUrl">Image Link: </label>
+            <input
+                type="text"
+                name="imgUrl"
+                id="imgUrl"
+                value={formPayload.imgUrl}
+                onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Description: </label>
+            <textarea
+                type="text"
+                name="description"
+                id="description"
+                value={formPayload.description}
+                onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <input type="submit" value="Add New Berry"/>
+          </div>
+          <div>
+            <ErrorList errors={errors}/>
+          </div>
+        </form>
+      </div>
   )
 }
 
