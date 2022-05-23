@@ -79,10 +79,10 @@ public class BerriesApiV1Controller {
     Optional<Berry> berry = berryService.findById(id);
     Map<String, Berry> dataMap = new HashMap<>();
     if (berry.isPresent()) {
-      dataMap.remove("berry", berry.get());
+      berryService.deleteBerry(berry.get());
     } else {
       throw new BerryNotDeletedException();
     }
-    return new ResponseEntity<>(dataMap, HttpStatus.OK);
+    return new ResponseEntity<>(dataMap, HttpStatus.ACCEPTED);
   }
 }

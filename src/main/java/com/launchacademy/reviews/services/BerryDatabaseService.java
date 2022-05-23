@@ -35,7 +35,7 @@ public class BerryDatabaseService implements BerryService {
   }
 
   @Override
-  public Optional<Berry> deleteById(Long id){
-    return null;
+  public void deleteBerry(Berry berry){
+    berriesRepository.delete(berry);
   }
 }
