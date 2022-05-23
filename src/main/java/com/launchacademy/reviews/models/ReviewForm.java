@@ -16,7 +16,7 @@ public class ReviewForm {
   @NotBlank
   private String name;
 
-  @NotBlank
+  @NotNull
   private Integer rating;
 
   private String comment;

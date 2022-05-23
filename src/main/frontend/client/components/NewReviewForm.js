@@ -24,7 +24,7 @@ const NewReviewForm = props => {
     const berryId = props.match.params.id
     formPayload.berryId = berryId
     try {
-      const response = await fetch(`/api/v1/reviews`, {
+      const response = await fetch("/api/v1/reviews", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -84,7 +84,7 @@ const NewReviewForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    if(validForSubmission()){
+    if (validForSubmission()) {
       addReview(formPayload)
     }
   }
@@ -141,7 +141,7 @@ const NewReviewForm = props => {
           />
         </div>
 
-        <input className="button" type="submit" value="Submit" />     
+        <input className="button" type="submit" value="Submit" />
       </form>
     </div>
   )
