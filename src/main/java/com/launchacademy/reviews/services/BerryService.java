@@ -10,4 +10,6 @@ public interface BerryService {
   void save(Berry berry);
   Optional<Berry> findById(Long id);
   Optional<Berry> findByName(String berryName);
+
+  Optional<Berry> deleteById(Long id);
 }

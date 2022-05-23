@@ -33,4 +33,9 @@ public class BerryDatabaseService implements BerryService {
   public Optional<Berry> findByName(String menuName) {
     return Optional.ofNullable(berriesRepository.findByName(menuName));
   }
+
+  @Override
+  public Optional<Berry> deleteById(Long id){
+    return null;
+  }
 }
