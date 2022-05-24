@@ -86,18 +86,20 @@ public class BerriesApiV1Controller {
   }
 
   @PutMapping("/{id}/edit")
-  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable("id") long id, @RequestBody Berry berryEdits) {
-      Optional<Berry> berryData = berryService.findById(id);
-      Map<String, Berry> dataMap = new HashMap<>();
-      if(berryData.isPresent()) {
-        Berry oldBerry = berryData.get();
-        Berry editedBerry = berryService.updateBerry(oldBerry, berryEdits);
-        dataMap.put("berry", editedBerry);
-        return new ResponseEntity<>(dataMap, HttpStatus.OK);
+  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable("id") long id,
+      @RequestBody Berry berryEdits) {
+    Optional<Berry> berryData = berryService.findById(id);
+    Map<String, Berry> dataMap = new HashMap<>();
+    if (berryData.isPresent()) {
+      Berry oldBerry = berryData.get();
+      Berry editedBerry = berryService.updateBerry(oldBerry, berryEdits);
+      dataMap.put("berry", editedBerry);
+      return new ResponseEntity<>(dataMap, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
+  }
+
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Berry>> deleteBerry(@PathVariable Long id) {
     Optional<Berry> berry = berryService.findById(id);
