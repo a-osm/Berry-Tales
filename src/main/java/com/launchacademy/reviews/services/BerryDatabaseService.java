@@ -43,4 +43,8 @@ public class BerryDatabaseService implements BerryService {
     berriesRepository.save(editedBerry);
     return editedBerry;
   }
-}
+
+  @Override
+  public void deleteBerry(Berry berry){
+    berriesRepository.delete(berry);
+  }

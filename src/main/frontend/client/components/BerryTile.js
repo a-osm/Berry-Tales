@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import DeleteBerryButton from "./DeleteBerryButton.js"
 
 const BerryTile = props => {
   const { name, imgUrl, description, id } = props.berry
@@ -11,6 +12,7 @@ const BerryTile = props => {
       </Link>
       <img src={imgUrl} alt="image" />
       <p>{description}</p>
+      <DeleteBerryButton id={id} />
     </div>
   )
 }

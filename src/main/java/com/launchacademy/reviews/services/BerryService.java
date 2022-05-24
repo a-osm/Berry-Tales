@@ -11,4 +11,5 @@ public interface BerryService {
   Optional<Berry> findById(Long id);
   Optional<Berry> findByName(String berryName);
   Berry updateBerry(Berry oldBerry, Berry berryEdits);
+  void deleteBerry(Berry berry);
 }
