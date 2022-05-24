@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,6 +73,31 @@ public class BerriesApiV1Controller {
     }
   }
 
+  @GetMapping("/{id}/edit")
+  public ResponseEntity<Map<String, Berry>> editBerry(@PathVariable Long id) {
+    Optional<Berry> berry = berryService.findById(id);
+    Map<String, Berry> dataMap = new HashMap<>();
+    if (berry.isPresent()) {
+      dataMap.put("berry", berry.get());
+    } else {
+      throw new BerryNotFoundException();
+    }
+    return new ResponseEntity<>(dataMap, HttpStatus.OK);
+  }
+
+  @PutMapping("/{id}/edit")
+  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable("id") long id, @RequestBody Berry berryEdits) {
+      Optional<Berry> berryData = berryService.findById(id);
+      Map<String, Berry> dataMap = new HashMap<>();
+      if(berryData.isPresent()) {
+        Berry oldBerry = berryData.get();
+        Berry editedBerry = berryService.updateBerry(oldBerry, berryEdits);
+        dataMap.put("berry", editedBerry);
+        return new ResponseEntity<>(dataMap, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Berry>> deleteBerry(@PathVariable Long id) {
     Optional<Berry> berry = berryService.findById(id);

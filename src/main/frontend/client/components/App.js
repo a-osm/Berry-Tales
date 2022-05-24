@@ -9,6 +9,7 @@ import BerriesIndex from "./BerriesIndex"
 import BerriesShow from "./BerriesShow"
 import NewReviewForm from "./NewReviewForm"
 import NewBerryForm from "./NewBerryForm.js"
+import BerryEdit from "./BerryEdit.js"
 
 const App = props => {
   useEffect(() => {
@@ -29,6 +30,7 @@ const App = props => {
         />
         <Route exact path="/berries/new" component={NewBerryForm} />
         <Route exact path="/berries/:id" component={BerriesShow} />
+        <Route exact path="/berries/:id/edit" component={BerryEdit} />
       </Switch>
     </BrowserRouter>
   )

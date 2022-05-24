@@ -35,7 +35,16 @@ public class BerryDatabaseService implements BerryService {
   }
 
   @Override
+  public Berry updateBerry(Berry oldBerry, Berry berryEdits) {
+    Berry editedBerry = oldBerry;
+    editedBerry.setName(berryEdits.getName());
+    editedBerry.setDescription(berryEdits.getDescription());
+    editedBerry.setImgUrl(berryEdits.getImgUrl());
+    berriesRepository.save(editedBerry);
+    return editedBerry;
+  }
+
+  @Override
   public void deleteBerry(Berry berry){
     berriesRepository.delete(berry);
   }
-}
