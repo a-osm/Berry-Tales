@@ -12,7 +12,7 @@ const BerryTile = props => {
       </Link>
       <img src={imgUrl} alt="image" />
       <p>{description}</p>
-      <DeleteBerryButton />
+      <DeleteBerryButton id={id} />
     </div>
   )
 }

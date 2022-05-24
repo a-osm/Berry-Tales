@@ -1,20 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
 
 const DeleteBerryButton = props => {
-  const deleteBerry = () => {}
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    deleteBerry()
+  const { id } = props
+  const deleteBerry = async () => {
+    try {
+      const response = await fetch(`/api/v1/berries/${id}`, {
+        method: "DELETE"
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const responseBody = await response.json()
+      window.location.reload(true)
+    } catch (err) {
+      console.error(`Error while deleting: ${err.message}`)
+    }
   }
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input type="submit" value="Delete" />
-        </div>
-      </form>
-    </>
+    <button className="button" onClick={deleteBerry}>
+      Delete
+    </button>
   )
 }
 
