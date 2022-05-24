@@ -9,42 +9,41 @@ const BerryEdit = props => {
     imgUrl: "",
     description: ""
   })
-
   const [errors, setErrors] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
   const editBerry = async () => {
-   const berryId = props.match.params.id
-  try {
-    const response = await fetch(`/api/v1/berries/${berryId}/edit`, {
-    method: "PUT",
-    headers: new Headers({ "Content-Type": "application/json" }),
-    body: JSON.stringify(formPayload)
-  })
-  if (!response.ok) {
-    if (response.status === 422) {
-      const body = await response.json()
-      return setErrors(body.errors)
-    } else {
-      const errorMessage = `${response.status} (${response.statusText})`
-      const error = new Error(errorMessage)
-      throw error
-    }
-  }
-  setShouldRedirect(true)
+    const berryId = props.match.params.id
+    try {
+      const response = await fetch(`/api/v1/berries/${berryId}/edit`, {
+        method: "PUT",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(formPayload)
+      })
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json()
+          return setErrors(body.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw error
+        }
+      }
+      setShouldRedirect(true)
 
-  const body = await response.json()
-  } catch (error) {
-    console.error(`Error in fetch ${error.message}`)
-  }
+      const body = await response.json()
+    } catch (error) {
+      console.error(`Error in fetch ${error.message}`)
+    }
   }
 
   const validForSubmission = () => {
-    let submitErrors ={}
-    const requiredFields = ["name","imgUrl"]
+    let submitErrors = {}
+    const requiredFields = ["name", "imgUrl"]
     requiredFields.forEach(field => {
-      if(formPayload[field].trim() === "") {
-        submitErrors = { ...submitErrors, [field]: "Is Blank"}
+      if (formPayload[field].trim() === "") {
+        submitErrors = { ...submitErrors, [field]: "Is Blank" }
       }
     })
     setErrors(submitErrors)
@@ -53,16 +52,16 @@ const BerryEdit = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    if(validForSubmission()){
+    if (validForSubmission()) {
       editBerry()
     }
   }
 
   const handleInputChange = event => {
-      setFormPayload({
-        ...formPayload,
-        [event.currentTarget.name]: event.currentTarget.value
-      })
+    setFormPayload({
+      ...formPayload,
+      [event.currentTarget.name]: event.currentTarget.value
+    })
   }
 
   if (shouldRedirect) {
