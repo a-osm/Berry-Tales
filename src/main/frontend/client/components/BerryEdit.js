@@ -11,13 +11,10 @@ const BerryEdit = props => {
   })
 
   const [errors, setErrors] = useState({})
-
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
   const editBerry = async () => {
-  
    const berryId = props.match.params.id
-   formPayload.berryId = berryId
   try {
     const response = await fetch(`/api/v1/berries/${berryId}/edit`, {
     method: "PUT",

@@ -33,4 +33,14 @@ public class BerryDatabaseService implements BerryService {
   public Optional<Berry> findByName(String menuName) {
     return Optional.ofNullable(berriesRepository.findByName(menuName));
   }
+
+  @Override
+  public Berry updateBerry(Berry oldBerry, Berry berryEdits) {
+    Berry editedBerry = oldBerry;
+    editedBerry.setName(berryEdits.getName());
+    editedBerry.setDescription(berryEdits.getDescription());
+    editedBerry.setImgUrl(berryEdits.getImgUrl());
+    berriesRepository.save(editedBerry);
+    return editedBerry;
+  }
 }
