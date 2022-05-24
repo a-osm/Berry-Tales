@@ -26,7 +26,6 @@ import javax.websocket.server.PathParam;
 public class BerriesApiV1Controller {
 
   private final BerryService berryService;
-  HashMap<String, Berry> tempBerry;
 
   @Autowired
   public BerriesApiV1Controller(BerryService berryService) {

@@ -1,4 +1,6 @@
+import _ from "lodash"
 import React, { useState } from "react"
+import { Redirect } from "react-router"
 import ErrorList from "./ErrorList"
 
 const BerryEdit = props => {
@@ -13,6 +15,7 @@ const BerryEdit = props => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
   const editBerry = async () => {
+  
    const berryId = props.match.params.id
    formPayload.berryId = berryId
   try {
@@ -31,6 +34,7 @@ const BerryEdit = props => {
       throw error
     }
   }
+  setShouldRedirect(true)
 
   const body = await response.json()
   } catch (error) {
@@ -38,9 +42,23 @@ const BerryEdit = props => {
   }
   }
 
+  const validForSubmission = () => {
+    let submitErrors ={}
+    const requiredFields = ["name","imgUrl"]
+    requiredFields.forEach(field => {
+      if(formPayload[field].trim() === "") {
+        submitErrors = { ...submitErrors, [field]: "Is Blank"}
+      }
+    })
+    setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
+  }
+
   const handleSubmit = event => {
     event.preventDefault()
-    editBerry()
+    if(validForSubmission()){
+      editBerry()
+    }
   }
 
   const handleInputChange = event => {
