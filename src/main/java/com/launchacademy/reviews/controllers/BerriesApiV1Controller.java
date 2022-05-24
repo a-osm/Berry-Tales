@@ -88,18 +88,19 @@ public class BerriesApiV1Controller {
   }
 
   @PutMapping("/{id}/edit")
-  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable Long id, @RequestBody Berry updatedBerry) {
-    if (berryService.findById(id).isPresent()) {
-      Optional<Berry> optionalBerry = berryService.findById(id);
-      Berry berry = optionalBerry.get();
-      berry.setDescription(updatedBerry.getDescription());
-      berry.setName(updatedBerry.getName());
-      berry.setImgUrl(updatedBerry.getImgUrl());
-      berryService.save(berry);
+  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable("id") long id, @RequestBody Berry updatedBerry) {
+      Optional<Berry> berryData = berryService.findById(id);
+      Map<String, Berry> dataMap = new HashMap<>();
+      if(berryData.isPresent()) {
+        Berry berry = berryData.get();
+        berry.setDescription(updatedBerry.getDescription());
+        berry.setName(updatedBerry.getName());
+        berry.setImgUrl(updatedBerry.getImgUrl());
+        berryService.save(berry);
+        dataMap.put("berry", berry);
+        return new ResponseEntity<>(dataMap, HttpStatus.OK);
     } else {
-      throw new BerryNotCreatedException();
-//      Fix the above later
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    return null;
   }
 }
