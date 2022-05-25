@@ -19,10 +19,14 @@ public class BerryDatabaseService implements BerryService {
   }
 
   @Override
-  public List<Berry> findAll(){ return (List<Berry>)berriesRepository.findAll(); }
+  public List<Berry> findAll() {
+    return (List<Berry>) berriesRepository.findAll();
+  }
 
   @Override
-  public void save(Berry berry) { berriesRepository.save(berry); }
+  public void save(Berry berry) {
+    berriesRepository.save(berry);
+  }
 
   @Override
   public Optional<Berry> findById(Long id) {
@@ -45,6 +49,7 @@ public class BerryDatabaseService implements BerryService {
   }
 
   @Override
-  public void deleteBerry(Berry berry){
+  public void deleteBerry(Berry berry) {
     berriesRepository.delete(berry);
   }
+}

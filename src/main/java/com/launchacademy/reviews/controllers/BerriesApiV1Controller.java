@@ -3,6 +3,7 @@ package com.launchacademy.reviews.controllers;
 import com.launchacademy.reviews.exceptionHandling.BerryNotCreatedException;
 import com.launchacademy.reviews.exceptionHandling.BerryNotDeletedException;
 import com.launchacademy.reviews.exceptionHandling.BerryNotFoundException;
+import com.launchacademy.reviews.exceptionHandling.BerryNotUpdatedException;
 import com.launchacademy.reviews.models.Berry;
 import com.launchacademy.reviews.services.BerryService;
 
@@ -86,18 +87,34 @@ public class BerriesApiV1Controller {
   }
 
   @PutMapping("/{id}/edit")
-  public ResponseEntity<Map<String, Berry>> updateBerry(@PathVariable("id") long id, @RequestBody Berry berryEdits) {
-      Optional<Berry> berryData = berryService.findById(id);
-      Map<String, Berry> dataMap = new HashMap<>();
-      if(berryData.isPresent()) {
-        Berry oldBerry = berryData.get();
-        Berry editedBerry = berryService.updateBerry(oldBerry, berryEdits);
-        dataMap.put("berry", editedBerry);
-        return new ResponseEntity<>(dataMap, HttpStatus.OK);
+  public ResponseEntity updateBerry(@PathVariable("id") Long id,
+      @RequestBody @Valid Berry berryEdits, BindingResult bindingResult) {
+    if(bindingResult.hasErrors()){
+      Map<String, String> errorList = new HashMap<>();
+      for (FieldError fieldError : bindingResult.getFieldErrors()) {
+        errorList.put(fieldError.getField(), fieldError.getDefaultMessage());
+      }
+      Map<String, Map> errors = new HashMap<>();
+      errors.put("errors", errorList);
+      return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);
     } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      try{
+        Optional<Berry> berryData = berryService.findById(id);
+        Map<String, Berry> dataMap = new HashMap<>();
+        if (berryData.isPresent()) {
+          Berry oldBerry = berryData.get();
+          Berry editedBerry = berryService.updateBerry(oldBerry, berryEdits);
+          dataMap.put("berry", editedBerry);
+          return new ResponseEntity<>(dataMap, HttpStatus.OK);
+        } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      } catch (Exception exception){
+        throw new BerryNotUpdatedException();
+      }
     }
-    
+  }
+
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Berry>> deleteBerry(@PathVariable Long id) {
     Optional<Berry> berry = berryService.findById(id);

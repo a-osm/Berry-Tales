@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
+import { Redirect } from "react-router-dom"
 
 const DeleteBerryButton = props => {
   const { id } = props
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   const deleteBerry = async () => {
     try {
       const response = await fetch(`/api/v1/berries/${id}`, {
@@ -13,10 +15,14 @@ const DeleteBerryButton = props => {
         throw error
       }
       const responseBody = await response.json()
-      window.location.reload(true)
+      setShouldRedirect(true)
     } catch (err) {
       console.error(`Error while deleting: ${err.message}`)
     }
+  }
+
+  if (shouldRedirect) {
+    return <Redirect push to={`/berries`} />
   }
 
   return (

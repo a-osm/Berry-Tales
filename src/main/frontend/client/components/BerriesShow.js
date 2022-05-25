@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
+import DeleteBerryButton from "./DeleteBerryButton.js"
 import ReviewList from "./ReviewList"
 
 const BerriesShow = props => {
@@ -36,12 +36,11 @@ const BerriesShow = props => {
       <Link to={`/berries/${berryId}/reviews/new`}>
         Add a review to this berry!
       </Link>
-      <Link to={`/berries/${berryId}/edit`}>
-        Edit this berry!
-      </Link>
+      <Link to={`/berries/${berryId}/edit`}>Edit this berry!</Link>
       <h1>{berry.name}</h1>
       <p>{berry.description}</p>
       <img src={berry.imgUrl} />
+      <DeleteBerryButton id={berryId} />
       <ReviewList reviews={berry.reviews} />
       <Link to={"/berries"}>Back to Home Page</Link>
     </div>
