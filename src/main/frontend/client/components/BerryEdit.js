@@ -70,9 +70,9 @@ const BerryEdit = props => {
 
   return (
     <div>
-      <h2>Edit Berry</h2>
+      <h2 className="edit-title">Edit Berry</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="edit-input">
           <label htmlFor="name">Name: </label>
           <input
             type="text"
@@ -82,7 +82,7 @@ const BerryEdit = props => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="edit-input">
           <label htmlFor="imgUrl">Image Link: </label>
           <input
             type="text"
@@ -92,7 +92,7 @@ const BerryEdit = props => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="edit-input">
           <label htmlFor="description">Description: </label>
           <textarea
             type="text"
@@ -102,7 +102,7 @@ const BerryEdit = props => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="edit-input">
           <input type="submit" value="Submit Edits" />
         </div>
         <div>

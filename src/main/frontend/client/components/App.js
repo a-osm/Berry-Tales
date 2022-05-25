@@ -1,6 +1,5 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { hot } from "react-hot-loader/root"
-import "foundation-sites"
 import "../assets/scss/main.scss"
 import $ from "jquery"
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom"
@@ -12,9 +11,6 @@ import NewBerryForm from "./NewBerryForm.js"
 import BerryEdit from "./BerryEdit.js"
 
 const App = props => {
-  useEffect(() => {
-    $(document).foundation()
-  }, [])
 
   return (
     <BrowserRouter>

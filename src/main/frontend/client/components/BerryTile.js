@@ -1,12 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import DeleteBerryButton from "./DeleteBerryButton.js"
 
 const BerryTile = props => {
   const { name, imgUrl, description, id } = props.berry
 
   return (
-    <div>
+    <div className="berry-tile">
       <Link to={`/berries/${id}`}>
         <h1>{name}</h1>
       </Link>
