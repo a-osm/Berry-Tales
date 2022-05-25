@@ -27,7 +27,7 @@ const DeleteBerryButton = props => {
 
   return (
     <button className="button" onClick={deleteBerry}>
-      Delete
+      Delete<img className="delete" src="https://www.freepnglogos.com/uploads/blueberries-png/blueberries-blueberry-sch-boden-spies-7.png"/>
     </button>
   )
 }

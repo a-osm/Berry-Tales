@@ -101,7 +101,7 @@ const NewBerryForm = props => {
           />
         </div>
         <div>
-          <input type="submit" value="Add New Berry" />
+          <input className="my-button" type="submit" value="Add New Berry" />
         </div>
         <div>
           <ErrorList errors={errors} />
