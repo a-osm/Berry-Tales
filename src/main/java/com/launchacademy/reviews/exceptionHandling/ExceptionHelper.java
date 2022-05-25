@@ -23,6 +23,11 @@ public class ExceptionHelper {
     return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_MODIFIED);
   }
 
+  @ExceptionHandler(value = {BerryNotUpdatedException.class})
+  public ResponseEntity<String> handleBerryNotUpdatedException(BerryNotUpdatedException ex) {
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_MODIFIED);
+  }
+
   @ExceptionHandler(value = {ReviewNotCreatedException.class})
   public ResponseEntity<Map<String, List>> handleReviewNotCreatedException(
       ReviewNotCreatedException ex) {
