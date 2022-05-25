@@ -70,7 +70,7 @@ const NewBerryForm = props => {
     <div>
       <h2>Add New Berry</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="new-berry-input">
           <label htmlFor="name">Name: </label>
           <input
             type="text"
@@ -80,7 +80,7 @@ const NewBerryForm = props => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="new-berry-input">
           <label htmlFor="imgUrl">Image Link: </label>
           <input
             type="text"
@@ -90,7 +90,7 @@ const NewBerryForm = props => {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="new-berry-input">
           <label htmlFor="description">Description: </label>
           <textarea
             type="text"
