@@ -1,76 +1,76 @@
-*{
+* {
   font-family: fantasy;
 }
 
-body{
+body {
   background-color: lightcyan;
 }
 
-h1{
+h1 {
   font-family: fantasy;
   padding-left: 1rem;
 }
 
-h4{
+h4 {
   font-family: fantasy;
 }
 
-p{
+p {
   text-align: center;
 }
 
 img {
-width: 400px;
-margin: auto;
-display: block;
-border-radius: 1rem;
+  width: 400px;
+  margin: auto;
+  display: block;
+  border-radius: 1rem;
 }
 
-.berry-tile{
-border: 3px solid black;
-border-radius: 1rem;
-padding: 1rem;
-margin: 1rem;
-}
-
-.new-berry-input{
+.berry-tile {
+  border: 3px solid black;
+  border-radius: 1rem;
+  padding: 1rem;
   margin: 1rem;
 }
 
-.left-align-indent{
+.new-berry-input {
+  margin: 1rem;
+}
+
+.left-align-indent {
   text-align: left;
   margin-left: 1rem;
 }
 
-.review-name{
+.review-name {
   font-weight: 100;
 }
 
-.review-tile{
+.review-tile {
   border: 2px solid black;
   border-radius: 1rem;
   margin: 1rem;
 }
 
-.right-align{
+.right-align {
   float: right;
 }
 
-.edit-input{
+.edit-input {
   margin: 1rem;
 }
 
-.edit-title{
+.edit-title {
   font-weight: 100;
 }
 
-.button{
+.button {
   width: 75px;
   border: 1px solid black;
   background-color: lightcyan;
   cursor: pointer;
 }
 
-.delete{
+.delete {
   width: 50px;
 }
