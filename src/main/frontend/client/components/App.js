@@ -11,7 +11,6 @@ import NewBerryForm from "./NewBerryForm.js"
 import BerryEdit from "./BerryEdit.js"
 
 const App = props => {
-
   return (
     <BrowserRouter>
       <Switch>

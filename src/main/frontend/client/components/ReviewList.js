@@ -9,7 +9,7 @@ const ReviewList = props => {
 
   return (
     <div>
-      <h3>Reviews</h3>
+      <h3 className="review-heading">Reviews</h3>
       {reviewTiles}
     </div>
   )

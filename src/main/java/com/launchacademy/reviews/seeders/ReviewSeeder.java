@@ -25,6 +25,7 @@ public class ReviewSeeder {
       Berry goldenRaspberry = berryService.findByName("Golden Raspberries").get();
       Berry blueberry = berryService.findByName("Blueberries").get();
       Berry strawberry = berryService.findByName("Strawberries").get();
+      Berry pineapple = berryService.findByName("Pineapples").get();
 
       Review review1 = new Review();
       review1.setName("Kenny Smith");
@@ -46,6 +47,20 @@ public class ReviewSeeder {
       review3.setComment("One of the most versatile berries. My go to!");
       review3.setBerry(strawberry);
       reviewService.save(review3);
+
+      Review review4 = new Review();
+      review4.setName("Marina");
+      review4.setRating(5);
+      review4.setComment("I love pineapple so much that I'm okay with it eating me back.");
+      review4.setBerry(pineapple);
+      reviewService.save(review4);
+
+      Review review5 = new Review();
+      review5.setName("Dave");
+      review5.setRating(2);
+      review5.setComment("THIS IS NOT A BERRY");
+      review5.setBerry(pineapple);
+      reviewService.save(review5);
     }
   }
 }
