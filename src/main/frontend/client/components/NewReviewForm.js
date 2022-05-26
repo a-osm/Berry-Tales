@@ -106,7 +106,7 @@ const NewReviewForm = props => {
       <Link to={`/berries/${berry.id}`}>Back to berry</Link>
       <form className="callout" onSubmit={handleSubmit}>
         <ErrorList errors={errors} />
-        <div>
+        <div className="review-input">
           <label htmlFor="name">Name: </label>
           <input
             name="name"
@@ -117,7 +117,7 @@ const NewReviewForm = props => {
           />
         </div>
 
-        <div>
+        <div className="review-input">
           <label htmlFor="rating">Rating: </label>
           <input
             name="rating"
@@ -130,7 +130,7 @@ const NewReviewForm = props => {
           />
         </div>
 
-        <div>
+        <div className="review-input">
           <label htmlFor="comment">Comment: </label>
           <input
             name="comment"

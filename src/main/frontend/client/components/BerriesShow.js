@@ -34,11 +34,15 @@ const BerriesShow = props => {
   return (
     <div>
       <div>
-        <span><Link to={"/berries"}>Back to Home Page</Link></span>
-        <Link className="right-align" to={`/berries/${berryId}/edit`}>Edit this berry!</Link>
+        <span>
+          <Link to={"/berries"}>Back to Home Page</Link>
+        </span>
+        <Link className="right-align" to={`/berries/${berryId}/edit`}>
+          Edit this berry!
+        </Link>
       </div>
       <h1>{berry.name}</h1>
-      <img src={berry.imgUrl} />      
+      <img src={berry.imgUrl} />
       <p>{berry.description}</p>
       <DeleteBerryButton id={berryId} />
       <ReviewList reviews={berry.reviews} />
