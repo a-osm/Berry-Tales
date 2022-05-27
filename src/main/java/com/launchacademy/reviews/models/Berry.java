@@ -35,8 +35,8 @@ public class Berry {
   private String name;
 
   @NotBlank
-  @Column(name = "img_url", nullable = false)
-  private String imgUrl;
+  @Column(name = "image_url", nullable = false)
+  private String imageUrl;
 
   @Column(name = "description")
   private String description;

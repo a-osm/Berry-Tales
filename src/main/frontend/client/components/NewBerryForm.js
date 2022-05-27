@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom"
 const NewBerryForm = props => {
   const [formPayload, setFormPayload] = useState({
     name: "",
-    imgUrl: "",
+    imageUrl: "",
     description: ""
   })
 
@@ -40,7 +40,7 @@ const NewBerryForm = props => {
   }
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["name", "imgUrl"]
+    const requiredFields = ["name", "imageUrl"]
     requiredFields.forEach(field => {
       if (formPayload[field].trim() === "") {
         submitErrors = { ...submitErrors, [field]: "Is Blank" }
@@ -81,12 +81,12 @@ const NewBerryForm = props => {
           />
         </div>
         <div className="new-berry-input">
-          <label htmlFor="imgUrl">Image Link: </label>
+          <label htmlFor="imageUrl">Image Url: </label>
           <input
             type="text"
-            name="imgUrl"
-            id="imgUrl"
-            value={formPayload.imgUrl}
+            name="imageUrl"
+            id="imageUrl"
+            value={formPayload.imageUrl}
             onChange={handleInputChange}
           />
         </div>

@@ -7,7 +7,7 @@ const BerriesShow = props => {
   const [berry, setBerry] = useState({
     name: "",
     description: "",
-    imgUrl: "",
+    imageUrl: "",
     reviews: []
   })
   const berryId = props.match.params.id
@@ -42,7 +42,7 @@ const BerriesShow = props => {
         </Link>
       </div>
       <h1>{berry.name}</h1>
-      <img src={berry.imgUrl} />
+      <img src={berry.imageUrl} />
       <p>{berry.description}</p>
       <DeleteBerryButton id={berryId} />
       <ReviewList reviews={berry.reviews} />
