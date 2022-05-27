@@ -43,7 +43,7 @@ public class BerryDatabaseService implements BerryService {
     Berry editedBerry = oldBerry;
     editedBerry.setName(berryEdits.getName());
     editedBerry.setDescription(berryEdits.getDescription());
-    editedBerry.setImgUrl(berryEdits.getImgUrl());
+    editedBerry.setImageUrl(berryEdits.getImageUrl());
     berriesRepository.save(editedBerry);
     return editedBerry;
   }

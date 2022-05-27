@@ -6,7 +6,7 @@ import ErrorList from "./ErrorList"
 const BerryEdit = props => {
   const [formPayload, setFormPayload] = useState({
     name: "",
-    imgUrl: "",
+    imageUrl: "",
     description: ""
   })
   const [errors, setErrors] = useState({})
@@ -40,7 +40,7 @@ const BerryEdit = props => {
 
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["name", "imgUrl"]
+    const requiredFields = ["name", "imageUrl"]
     requiredFields.forEach(field => {
       if (formPayload[field].trim() === "") {
         submitErrors = { ...submitErrors, [field]: "Is Blank" }
@@ -83,12 +83,12 @@ const BerryEdit = props => {
           />
         </div>
         <div className="edit-input">
-          <label htmlFor="imgUrl">Image Link: </label>
+          <label htmlFor="imageUrl">Image Url: </label>
           <input
             type="text"
-            name="imgUrl"
-            id="imgUrl"
-            value={formPayload.imgUrl}
+            name="imageUrl"
+            id="imageUrl"
+            value={formPayload.imageUrl}
             onChange={handleInputChange}
           />
         </div>
