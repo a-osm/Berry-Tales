@@ -16,7 +16,7 @@ const NewReviewForm = props => {
   const [berry, setBerry] = useState({
     name: "",
     description: "",
-    imgUrl: "",
+    imageUrl: "",
     reviews: []
   })
 
